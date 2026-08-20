@@ -1,14 +1,14 @@
 package horasextra.modelo;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RegistroSemanal {
     private int id;
-    private Date fechaInicioSemana = new Date();
+    private LocalDate fechaInicioSemana;
     private int minutosExtra;
-    private Date fechaCreacion = new Date();
-    private Date fechaModificacion = new Date();
+    private LocalDate fechaCreacion;
+    private LocalDate fechaModificacion;
 
-    public RegistroSemanal(int id, Date fechaInicioSemana, int minutosExtra, Date fechaCreacion, Date fechaModificacion){
+    public RegistroSemanal(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion){
         this.id = id;
         this.fechaInicioSemana = fechaInicioSemana;
         this.minutosExtra = minutosExtra;
@@ -22,7 +22,7 @@ public class RegistroSemanal {
         this.id = id;
     }
 
-    public void setFechaInicioSemana(Date fechaInicioSemana){
+    public void setFechaInicioSemana(LocalDate fechaInicioSemana){
         this.fechaInicioSemana = fechaInicioSemana;
     }
 
@@ -30,11 +30,11 @@ public class RegistroSemanal {
         this.minutosExtra = minutosExtra;
     }
 
-    public void setFechaCreacion(Date fechaCreacion){
+    public void setFechaCreacion(LocalDate fechaCreacion){
         this.fechaCreacion = fechaCreacion;
     }
 
-    public void setFechaModificacion(Date fechaModificacion){
+    public void setFechaModificacion(LocalDate fechaModificacion){
         this.fechaModificacion = fechaModificacion;
     }
 
@@ -44,7 +44,7 @@ public class RegistroSemanal {
         return id;
     }
 
-    public Date getFechaInicioSemana(){
+    public LocalDate getFechaInicioSemana(){
         return fechaInicioSemana;
     }
 
@@ -52,11 +52,11 @@ public class RegistroSemanal {
         return minutosExtra;
     }
 
-    public Date getFechaCreacion(){
+    public LocalDate getFechaCreacion(){
         return fechaCreacion;
     }
 
-    public Date getFechaModificacion(){
+    public LocalDate getFechaModificacion(){
         return fechaModificacion;
     }
 }
