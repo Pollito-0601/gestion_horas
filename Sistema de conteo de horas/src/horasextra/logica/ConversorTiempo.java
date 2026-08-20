@@ -10,13 +10,15 @@ public class ConversorTiempo {
     }
     public static int[] convertirAHoras(int minutos){
         int[] totalHoras = new int[3];
-        int horas = minutos / 60;
-        int mins = minutos % 60;
+        int horas = Math.abs(minutos / 60);
+        int mins = Math.abs(minutos % 60);
+        int signo;
         if (minutos<0){
-            totalHoras[0] = 0;
+            signo = 0;
         } else{
-            totalHoras[0] = 1;
+            signo = 1;
         }
+        totalHoras[0] = signo;
         totalHoras[1] = horas;
         totalHoras[2] = mins;
 
