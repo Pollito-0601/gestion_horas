@@ -8,5 +8,5 @@ public interface RegistroRepositorio {
     public void listarTodos();
     public void listarEnRango(LocalDate fechaInicio, LocalDate fechaFin);
     public void eliminar(LocalDate fechaInicioSemana);
-    public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion);
+    public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaModificacion);
 }

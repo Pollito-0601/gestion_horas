@@ -2,9 +2,11 @@ package horasextra.repositorio;
 import java.util.Map;
 import java.time.LocalDate;
 import horasextra.modelo.RegistroSemanal;
+import java.util.TreeMap;
+import horasextra.util.SemanaUtil;
 
 public class RegistroRepositorioMemoria implements RegistroRepositorio {
-    private static Map<LocalDate, RegistroSemanal> registros;
+    private final Map<LocalDate, RegistroSemanal> registros = new TreeMap<>();
 
     @Override
     public void guardar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion) {
@@ -14,7 +16,8 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
 
     @Override
     public RegistroSemanal buscarPorSemana(LocalDate fechaInicioSemana) {
-        return registros.get(fechaInicioSemana);
+        LocalDate fechaInicio = SemanaUtil.fechaInicioSemana(fechaInicioSemana);
+        return registros.get(fechaInicio);
     }
 
     @Override
@@ -27,7 +30,7 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
     @Override
     public void listarEnRango(LocalDate fechaInicio, LocalDate fechaFin) {
         for(RegistroSemanal registro : registros.values()){
-            if(!registro.getFechaInicioSemana().isBefore(fechaInicio) && !registro.getFechaInicioSemana().isAfter(fechaFin)){
+            if(!registro.getFechaInicioSemana().isBefore(SemanaUtil.fechaInicioSemana(fechaInicio)) && !registro.getFechaInicioSemana().isAfter(SemanaUtil.fechaInicioSemana(fechaFin))){
                 System.out.println("ID: " + registro.getId() + ", Fecha Inicio Semana: " + registro.getFechaInicioSemana() + ", Minutos Extra: " + registro.getMinutosExtra() + ", Fecha Creación: " + registro.getFechaCreacion() + ", Fecha Modificación: " + registro.getFechaModificacion());
             }
         }
@@ -35,18 +38,19 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
 
     @Override
     public void eliminar(LocalDate fechaInicioSemana) {
-        registros.values().removeIf(registro -> registro.getFechaInicioSemana() == fechaInicioSemana);
+        LocalDate fechaInicio = SemanaUtil.fechaInicioSemana(fechaInicioSemana);
+        registros.remove(fechaInicio);
     }
 
     @Override
-    public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion) {
-        if(registros.containsKey(fechaInicioSemana)){
-            RegistroSemanal registroExistente = registros.get(fechaInicioSemana);
+    public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaModificacion) {
+        LocalDate fechaInicio = fechaInicioSemana.with(java.time.DayOfWeek.MONDAY);
+        if(registros.containsKey(fechaInicio)){
+            RegistroSemanal registroExistente = registros.get(fechaInicio);
             registroExistente.setId(id);
             registroExistente.setMinutosExtra(minutosExtra);
-            registroExistente.setFechaCreacion(fechaCreacion);
             registroExistente.setFechaModificacion(fechaModificacion);
-            registros.put(fechaInicioSemana, registroExistente);
+            registros.put(fechaInicio, registroExistente);
         }
     }
 }
