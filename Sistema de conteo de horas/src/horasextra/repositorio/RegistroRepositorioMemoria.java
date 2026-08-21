@@ -9,8 +9,8 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
     private final Map<LocalDate, RegistroSemanal> registros = new TreeMap<>();
 
     @Override
-    public void guardar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion) {
-        RegistroSemanal nuevoRegistro = new RegistroSemanal(id, fechaInicioSemana, minutosExtra, fechaCreacion, fechaModificacion);
+    public void guardar(LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion) {
+        RegistroSemanal nuevoRegistro = new RegistroSemanal(fechaInicioSemana, minutosExtra, fechaCreacion, fechaModificacion);
         registros.put(nuevoRegistro.getFechaInicioSemana(), nuevoRegistro);
     }
 
@@ -43,11 +43,10 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
     }
 
     @Override
-    public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaModificacion) {
+    public void actualizar(LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaModificacion) {
         LocalDate fechaInicio = SemanaUtil.fechaInicioSemana(fechaInicioSemana);
         if(registros.containsKey(fechaInicio)){
             RegistroSemanal registroExistente = registros.get(fechaInicio);
-            registroExistente.setId(id);
             registroExistente.setMinutosExtra(minutosExtra);
             registroExistente.setFechaModificacion(fechaModificacion);
             registros.put(fechaInicio, registroExistente);
