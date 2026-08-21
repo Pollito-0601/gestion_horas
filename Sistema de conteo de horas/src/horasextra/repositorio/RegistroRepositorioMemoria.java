@@ -44,7 +44,7 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
 
     @Override
     public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaModificacion) {
-        LocalDate fechaInicio = fechaInicioSemana.with(java.time.DayOfWeek.MONDAY);
+        LocalDate fechaInicio = SemanaUtil.fechaInicioSemana(fechaInicioSemana);
         if(registros.containsKey(fechaInicio)){
             RegistroSemanal registroExistente = registros.get(fechaInicio);
             registroExistente.setId(id);
