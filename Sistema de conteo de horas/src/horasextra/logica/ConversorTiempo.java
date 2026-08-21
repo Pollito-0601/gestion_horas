@@ -24,4 +24,10 @@ public class ConversorTiempo {
 
         return totalHoras;
     }
+
+    public String convertirAHorasString(int minutos){
+        int[] totalHoras = convertirAHoras(minutos);
+        String signo = totalHoras[0] == 1 ? "+" : "-";
+        return String.format("%s %02d:%02d", signo, totalHoras[1], totalHoras[2]);
+    }
 }

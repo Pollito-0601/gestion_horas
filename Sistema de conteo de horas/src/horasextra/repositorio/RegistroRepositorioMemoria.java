@@ -21,10 +21,14 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
     }
 
     @Override
-    public void listarTodos() {
+    public String[] listarTodos() {
+        String[] resultados = new String[registros.size()];
+        int i = 0;
         for(RegistroSemanal registro : registros.values()){
-            System.out.println("ID: " + registro.getId() + ", Fecha Inicio Semana: " + registro.getFechaInicioSemana() + ", Minutos Extra: " + registro.getMinutosExtra() + ", Fecha Creación: " + registro.getFechaCreacion() + ", Fecha Modificación: " + registro.getFechaModificacion());
+            resultados[i] = "ID: " + registro.getId() + ", Fecha Inicio Semana: " + registro.getFechaInicioSemana() + ", Minutos Extra: " + registro.getMinutosExtra() + ", Fecha Creación: " + registro.getFechaCreacion() + ", Fecha Modificación: " + registro.getFechaModificacion();
+            i++;
         }
+        return resultados;
     }
     
     @Override
@@ -51,5 +55,14 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
             registroExistente.setFechaModificacion(fechaModificacion);
             registros.put(fechaInicio, registroExistente);
         }
+    }
+
+    @Override
+    public int getTotalMinutos() {
+        int totalMinutos = 0;
+        for(RegistroSemanal registro : registros.values()){
+            totalMinutos += registro.getMinutosExtra();
+        }
+        return totalMinutos;
     }
 }
