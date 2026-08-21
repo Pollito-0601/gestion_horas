@@ -1,6 +1,5 @@
 package horasextra.ui;
 
-import horasextra.repositorio.RegistroRepositorioMemoria;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
