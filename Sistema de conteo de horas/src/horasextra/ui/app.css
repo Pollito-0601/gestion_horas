@@ -1,0 +1,28 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: #f5f7fb;
+    -fx-padding: 16;
+    -fx-spacing: 10;
+}
+
+.label {
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 13px;
+}
+
+.button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 8 14;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1d4ed8;
+}
+
+.combo-box,
+.date-picker {
+    -fx-background-radius: 8;
+}
