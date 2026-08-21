@@ -8,9 +8,10 @@ public class RegistroSemanal {
     private int minutosExtra;
     private LocalDate fechaCreacion;
     private LocalDate fechaModificacion;
+    private static int contador = 0;
 
-    public RegistroSemanal(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion){
-        this.id = id;
+    public RegistroSemanal(LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion){
+        this.id = ++contador;
         this.fechaInicioSemana = SemanaUtil.fechaInicioSemana(fechaInicioSemana);
         this.minutosExtra = minutosExtra;
         this.fechaCreacion = fechaCreacion;
