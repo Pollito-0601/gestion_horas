@@ -1,5 +1,6 @@
 package horasextra.modelo;
 import java.time.LocalDate;
+import horasextra.util.SemanaUtil;
 
 public class RegistroSemanal {
     private int id;
@@ -10,7 +11,7 @@ public class RegistroSemanal {
 
     public RegistroSemanal(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion){
         this.id = id;
-        this.fechaInicioSemana = fechaInicioSemana;
+        this.fechaInicioSemana = SemanaUtil.fechaInicioSemana(fechaInicioSemana);
         this.minutosExtra = minutosExtra;
         this.fechaCreacion = fechaCreacion;
         this.fechaModificacion = fechaModificacion;
@@ -20,10 +21,6 @@ public class RegistroSemanal {
 
     public void setId(int id){
         this.id = id;
-    }
-
-    public void setFechaInicioSemana(LocalDate fechaInicioSemana){
-        this.fechaInicioSemana = fechaInicioSemana;
     }
 
     public void setMinutosExtra(int minutosExtra){
