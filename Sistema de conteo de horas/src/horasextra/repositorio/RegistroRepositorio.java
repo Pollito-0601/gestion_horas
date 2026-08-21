@@ -1,10 +1,12 @@
 package horasextra.repositorio;
+import java.time.LocalDate;
+import horasextra.modelo.RegistroSemanal;
 
 public interface RegistroRepositorio {
-    public void guardar(int id, String fechaInicioSemana, int minutosExtra, String fechaCreacion, String fechaModificacion);
-    public void buscarPorSemana(String fechaInicioSemana);
+    public void guardar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion);
+    public RegistroSemanal buscarPorSemana(LocalDate fechaInicioSemana);
     public void listarTodos();
-    public void listarEnRango(String fechaInicio, String fechaFin);
-    public void eliminar(int id);
-    public void actualizar(int id, String fechaInicioSemana, int minutosExtra, String fechaCreacion, String fechaModificacion);
+    public void listarEnRango(LocalDate fechaInicio, LocalDate fechaFin);
+    public void eliminar(LocalDate fechaInicioSemana);
+    public void actualizar(int id, LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion);
 }
