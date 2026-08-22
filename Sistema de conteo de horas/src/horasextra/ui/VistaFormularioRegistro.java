@@ -74,6 +74,7 @@ public class VistaFormularioRegistro {
                     onRegistroGuardado.run();
                     calendario.refrescarCalendario();
                     confirmacionStage.close();
+                    limpiarFormulario(comboBox, horasComboBox, minutosComboBox);
                 });
                 confirmacionLayout.getChildren().addAll(confirmacionLabel, confirmarButton);
             } else {
@@ -86,6 +87,7 @@ public class VistaFormularioRegistro {
                     onRegistroGuardado.run();
                     calendario.refrescarCalendario();
                     confirmacionStage.close();
+                    limpiarFormulario(comboBox, horasComboBox, minutosComboBox);
                 });
                 confirmacionLayout.getChildren().addAll(confirmacionLabel, confirmarButton);
             }
@@ -166,5 +168,13 @@ public class VistaFormularioRegistro {
         return "Semana del " + inicioSemana.format(FORMATO_FECHA) + " al " + finSemana.format(FORMATO_FECHA)
             + "\nTiempo: " + tiempo
             + "\n\n" + accion;
+    }
+
+    private void limpiarFormulario(ComboBox<String> tipo, ComboBox<Integer> horas, ComboBox<Integer> minutos) {
+        tipo.setValue(null);
+        horas.setValue(null);
+        horas.getEditor().clear();
+        minutos.setValue(null);
+        minutos.getEditor().clear();
     }
 }
