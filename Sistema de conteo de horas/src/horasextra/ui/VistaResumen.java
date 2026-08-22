@@ -27,13 +27,17 @@ public class VistaResumen {
     }
 
     public void actualizarHorasTotales() {
-        horasLabel.setText("Horas totales: " + conversorTiempo.convertirAHorasString(registroRepositorio.getTotalMinutos()));
+        horasLabel.setText(conversorTiempo.convertirAHorasString(registroRepositorio.getTotalMinutos()));
     }
     
     public VBox crearVista() {
         Label titulo = new Label("Resumen");
         titulo.getStyleClass().add("seccion-titulo");
+        Label tituloTotal = new Label("Horas totales");
+        tituloTotal.getStyleClass().add("titulo-total");
         horasLabel.getStyleClass().add("tarjeta-total");
+        VBox tarjetaTotal = new VBox(0, tituloTotal, horasLabel);
+        tarjetaTotal.getStyleClass().add("contenedor-total");
         Button mostrarResumenButton = new Button("Mostrar historial de horas extra");
         mostrarResumenButton.getStyleClass().add("boton-secundario");
         mostrarResumenButton.setOnAction(e -> {
@@ -77,7 +81,7 @@ public class VistaResumen {
         listarPorRangoLayout.getChildren().add(seleccionarRangoButton);
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(titulo, horasLabel, mostrarResumenButton, listarPorRangoLayout, historialRango);
+        layout.getChildren().addAll(titulo, tarjetaTotal, mostrarResumenButton, listarPorRangoLayout, historialRango);
         return layout;
     }
 

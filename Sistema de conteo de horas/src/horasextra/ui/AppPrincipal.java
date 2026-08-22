@@ -6,6 +6,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -21,8 +23,12 @@ public class AppPrincipal extends Application {
 
     @Override
     public void start(Stage stage) {
-        Label icono = new Label("◷");
-        icono.getStyleClass().add("icono-app");
+        URL logoUrl = AppPrincipal.class.getResource("favicon-32x32.png");
+        Image logo = logoUrl == null ? null : new Image(logoUrl.toExternalForm());
+        ImageView icono = new ImageView(logo);
+        icono.setFitWidth(18);
+        icono.setFitHeight(18);
+        icono.setPreserveRatio(true);
         Label titulo = new Label("Sistema de conteo de horas extra");
         titulo.getStyleClass().add("titulo-principal");
         ToggleButton interruptorTema = new ToggleButton("☀ Claro");
@@ -67,6 +73,9 @@ public class AppPrincipal extends Application {
         });
 
         stage.setTitle("Sistema de Conteo de Horas Extra");
+        if (logo != null) {
+            stage.getIcons().add(logo);
+        }
         stage.setScene(scene);
         stage.show();
     }
