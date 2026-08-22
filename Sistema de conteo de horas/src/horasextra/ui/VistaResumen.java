@@ -67,6 +67,7 @@ public class VistaResumen {
             }
             TemaUtil.aplicar(historialScene);
             historialStage.setScene(historialScene);
+            TemaUtil.aplicarIcono(historialStage);
             historialStage.show();
         });
 
@@ -133,6 +134,7 @@ public class VistaResumen {
         }
         TemaUtil.aplicar(selectorScene);
         selectorStage.setScene(selectorScene);
+        TemaUtil.aplicarIcono(selectorStage);
         selectorStage.show();
         Platform.runLater(rangoPicker::show);
     }
@@ -199,6 +201,7 @@ public class VistaResumen {
         }
         TemaUtil.aplicar(historialRangoScene);
         historialRangoStage.setScene(historialRangoScene);
+        TemaUtil.aplicarIcono(historialRangoStage);
         historialRangoStage.show();
         mostrarMensaje(historialRango, "Historial cargado del " + fechaInicio + " al " + fechaFin + ".", false);
     }

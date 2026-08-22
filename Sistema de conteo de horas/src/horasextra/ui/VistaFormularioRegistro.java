@@ -99,6 +99,7 @@ public class VistaFormularioRegistro {
             TemaUtil.aplicar(confirmacionScene);
             confirmacionStage.setTitle("Confirmación");
             confirmacionStage.setScene(confirmacionScene);
+            TemaUtil.aplicarIcono(confirmacionStage);
             confirmacionStage.show();
         });
 
