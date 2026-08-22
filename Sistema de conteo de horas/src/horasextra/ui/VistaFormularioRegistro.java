@@ -66,11 +66,9 @@ public class VistaFormularioRegistro {
                 Label confirmacionLabel = new Label(construirMensajeConfirmacion(fechaSeleccionada, tipo, horas, minutos, true));
                 Button confirmarButton = new Button("Confirmar");
                 confirmarButton.setOnAction(ev -> {
-                    int ajusteMinutos = conversor.convertirAMinutos(tipo, horas, minutos);
-                    int minutosExistentes = registroRepositorio.buscarPorSemana(fechaSeleccionada).getMinutosExtra();
-                    int totalMinutos = minutosExistentes + ajusteMinutos;
+                    int totalMinutos = conversor.convertirAMinutos(tipo, horas, minutos);
                     registroRepositorio.actualizar(fechaSeleccionada, totalMinutos, LocalDate.now());
-                    mostrarMensaje(mensajeConfirmacion, "Horas extra actualizadas: " + totalMinutos + " minutos acumulados en la semana.", false);
+                    mostrarMensaje(mensajeConfirmacion, "Horas extra actualizadas: " + totalMinutos + " minutos.", false);
                     onRegistroGuardado.run();
                     calendario.refrescarCalendario();
                     confirmacionStage.close();
