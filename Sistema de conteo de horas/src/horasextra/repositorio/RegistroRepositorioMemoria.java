@@ -5,9 +5,11 @@ import horasextra.modelo.RegistroSemanal;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import horasextra.util.SemanaUtil;
+import horasextra.logica.ConversorTiempo;
 
 public class RegistroRepositorioMemoria implements RegistroRepositorio {
     private final Map<LocalDate, RegistroSemanal> registros = new TreeMap<>();
+    private final ConversorTiempo conversorTiempo = new ConversorTiempo();
 
     @Override
     public void guardar(LocalDate fechaInicioSemana, int minutosExtra, LocalDate fechaCreacion, LocalDate fechaModificacion) {
@@ -73,6 +75,7 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
         return "ID: " + registro.getId()
             + "\nFecha Inicio Semana: " + registro.getFechaInicioSemana()
             + "\nMinutos Extra: " + registro.getMinutosExtra()
+            + "\nHoras Extra: " + conversorTiempo.convertirAHorasString(registro.getMinutosExtra())
             + "\nFecha Creación: " + registro.getFechaCreacion()
             + "\nFecha Modificación: " + registro.getFechaModificacion()
             + "\n----------------------------------------";
