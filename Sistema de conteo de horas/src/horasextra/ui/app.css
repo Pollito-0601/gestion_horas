@@ -10,6 +10,11 @@
     -fx-font-size: 13px;
 }
 
+.titulo-principal {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+}
+
 .button {
     -fx-background-color: #2563eb;
     -fx-text-fill: white;
@@ -22,7 +27,78 @@
     -fx-background-color: #1d4ed8;
 }
 
+.panel {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-border-color: #d4dae6;
+    -fx-border-radius: 12;
+    -fx-padding: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.12), 10, 0.2, 0, 3);
+}
+
 .combo-box,
 .date-picker {
     -fx-background-radius: 8;
+}
+
+.combo-box.estilo-combo,
+.date-picker.estilo-combo {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #9aa4b2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.combo-box.estilo-combo .text-field {
+    -fx-background-color: #ffffff;
+    -fx-prompt-text-fill: #64748b;
+}
+
+.combo-box.estilo-combo .arrow-button {
+    -fx-background-color: #e5eaf4;
+    -fx-background-radius: 0 8 8 0;
+}
+
+.mensaje-confirmacion {
+    -fx-font-weight: 600;
+}
+
+.mensaje-exito {
+    -fx-text-fill: #166534;
+}
+
+.mensaje-error {
+    -fx-text-fill: #b91c1c;
+}
+
+.cal-dia-semana {
+    -fx-font-weight: 700;
+    -fx-text-fill: #334155;
+}
+
+.cal-dia {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-text-fill: #1f2937;
+}
+
+.cal-dia:hover {
+    -fx-background-color: #eff6ff;
+}
+
+.cal-otro-mes {
+    -fx-text-fill: #94a3b8;
+}
+
+.cal-con-registro {
+    -fx-border-color: #22c55e;
+    -fx-border-width: 2;
+    -fx-text-fill: #166534;
+}
+
+.cal-semana-seleccionada {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1e3a8a;
 }
