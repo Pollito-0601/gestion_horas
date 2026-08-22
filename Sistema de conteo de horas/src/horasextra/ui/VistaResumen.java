@@ -31,7 +31,11 @@ public class VistaResumen {
     }
     
     public VBox crearVista() {
+        Label titulo = new Label("Resumen");
+        titulo.getStyleClass().add("seccion-titulo");
+        horasLabel.getStyleClass().add("tarjeta-total");
         Button mostrarResumenButton = new Button("Mostrar historial de horas extra");
+        mostrarResumenButton.getStyleClass().add("boton-secundario");
         mostrarResumenButton.setOnAction(e -> {
             String[] registros = registroRepositorio.listarTodos();
             TextArea historial = new TextArea();
@@ -50,18 +54,21 @@ public class VistaResumen {
             Stage historialStage = new Stage();
             historialStage.setTitle("Historial de Horas Extra");
             VBox contenedor = new VBox(10, historial);
+            contenedor.getStyleClass().add("ventana-secundaria");
             VBox.setVgrow(historial, Priority.ALWAYS);
             Scene historialScene = new Scene(contenedor, 760, 420);
             URL css = VistaResumen.class.getResource("app.css");
             if (css != null) {
                 historialScene.getStylesheets().add(css.toExternalForm());
             }
+            TemaUtil.aplicar(historialScene);
             historialStage.setScene(historialScene);
             historialStage.show();
         });
 
         HBox listarPorRangoLayout = new HBox(10);
         Button seleccionarRangoButton = new Button("Seleccionar rango de fechas");
+        seleccionarRangoButton.getStyleClass().add("boton-secundario");
         Label historialRango = new Label();
         historialRango.getStyleClass().add("mensaje-confirmacion");
         seleccionarRangoButton.setOnAction(e -> {
@@ -70,7 +77,7 @@ public class VistaResumen {
         listarPorRangoLayout.getChildren().add(seleccionarRangoButton);
 
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(horasLabel, mostrarResumenButton, listarPorRangoLayout, historialRango);
+        layout.getChildren().addAll(titulo, horasLabel, mostrarResumenButton, listarPorRangoLayout, historialRango);
         return layout;
     }
 
@@ -114,11 +121,13 @@ public class VistaResumen {
         });
 
         VBox selectorLayout = new VBox(10, ayuda, seleccion, rangoPicker);
+        selectorLayout.getStyleClass().add("ventana-secundaria");
         Scene selectorScene = new Scene(selectorLayout, 420, 180);
         URL cssSelector = VistaResumen.class.getResource("app.css");
         if (cssSelector != null) {
             selectorScene.getStylesheets().add(cssSelector.toExternalForm());
         }
+        TemaUtil.aplicar(selectorScene);
         selectorStage.setScene(selectorScene);
         selectorStage.show();
         Platform.runLater(rangoPicker::show);
@@ -177,12 +186,14 @@ public class VistaResumen {
         Stage historialRangoStage = new Stage();
         historialRangoStage.setTitle("Historial por rango de fechas");
         VBox contenedor = new VBox(10, rangoSeleccionado, historial);
+        contenedor.getStyleClass().add("ventana-secundaria");
         VBox.setVgrow(historial, Priority.ALWAYS);
         Scene historialRangoScene = new Scene(contenedor, 760, 420);
         URL cssRango = VistaResumen.class.getResource("app.css");
         if (cssRango != null) {
             historialRangoScene.getStylesheets().add(cssRango.toExternalForm());
         }
+        TemaUtil.aplicar(historialRangoScene);
         historialRangoStage.setScene(historialRangoScene);
         historialRangoStage.show();
         mostrarMensaje(historialRango, "Historial cargado del " + fechaInicio + " al " + fechaFin + ".", false);

@@ -7,6 +7,7 @@ import horasextra.repositorio.RegistroRepositorioMemoria;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Button;
 import java.time.LocalDate;
@@ -26,6 +27,7 @@ public class VistaFormularioRegistro {
 
     public VBox crearVista() {
         Label tituloLabel = new Label("Horas");
+        tituloLabel.getStyleClass().add("seccion-titulo");
 
         ComboBox<String> comboBox = new ComboBox<>();
         comboBox.getItems().addAll("+", "-");
@@ -39,6 +41,7 @@ public class VistaFormularioRegistro {
         configurarComboNumerico(minutosComboBox, 59, "Minutos (0-59)");
 
         Button guardarButton = new Button("Guardar");
+        guardarButton.getStyleClass().add("boton-primario");
 
         Label mensajeConfirmacion = new Label();
         mensajeConfirmacion.getStyleClass().add("mensaje-confirmacion");
@@ -92,14 +95,18 @@ public class VistaFormularioRegistro {
             if (confirmacionCss != null) {
                 confirmacionScene.getStylesheets().add(confirmacionCss.toExternalForm());
             }
+            confirmacionLayout.getStyleClass().add("ventana-secundaria");
+            TemaUtil.aplicar(confirmacionScene);
             confirmacionStage.setTitle("Confirmación");
             confirmacionStage.setScene(confirmacionScene);
             confirmacionStage.show();
         });
 
 
+        HBox campos = new HBox(8, comboBox, horasComboBox, minutosComboBox);
+        campos.getStyleClass().add("fila-campos");
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(tituloLabel, comboBox, horasComboBox, minutosComboBox, guardarButton, mensajeConfirmacion);
+        layout.getChildren().addAll(tituloLabel, campos, guardarButton, mensajeConfirmacion);
         return layout;
     }
 

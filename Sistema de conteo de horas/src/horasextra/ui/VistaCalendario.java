@@ -88,8 +88,11 @@ public class VistaCalendario {
 
     public VBox crearVista() {
         Label titulo = new Label("Calendario");
+        titulo.getStyleClass().add("seccion-titulo");
         Button mesAnterior = new Button("<");
         Button mesSiguiente = new Button(">");
+        mesAnterior.getStyleClass().add("boton-navegacion");
+        mesSiguiente.getStyleClass().add("boton-navegacion");
         mesAnterior.setOnAction(e -> {
             mesMostrado = mesMostrado.minusMonths(1);
             actualizarCalendario();
@@ -99,6 +102,10 @@ public class VistaCalendario {
             actualizarCalendario();
         });
 
+        mesLabel.getStyleClass().add("mes-calendario");
+        mesLabel.setMaxWidth(Double.MAX_VALUE);
+        mesLabel.setAlignment(Pos.CENTER);
+        HBox.setHgrow(mesLabel, Priority.ALWAYS);
         HBox cabecera = new HBox(8, mesAnterior, mesLabel, mesSiguiente);
         cabecera.setAlignment(Pos.CENTER_LEFT);
 
@@ -113,8 +120,16 @@ public class VistaCalendario {
             diasSemana.getChildren().add(diaLabel);
         }
 
+        Label leyendaRegistrada = new Label("■ Registrada");
+        leyendaRegistrada.getStyleClass().add("leyenda-registrada");
+        Label leyendaSeleccionada = new Label("■ Seleccionada");
+        leyendaSeleccionada.getStyleClass().add("leyenda-seleccionada");
+        HBox leyenda = new HBox(12, leyendaRegistrada, leyendaSeleccionada);
+        leyenda.getStyleClass().add("leyenda-calendario");
+        semanaSeleccionadaLabel.getStyleClass().add("semana-seleccionada-texto");
+
         VBox layout = new VBox(10);
-        layout.getChildren().addAll(titulo, cabecera, diasSemana, grillaDias, semanaSeleccionadaLabel);
+        layout.getChildren().addAll(titulo, cabecera, diasSemana, grillaDias, leyenda, semanaSeleccionadaLabel);
         return layout;
     }
 
