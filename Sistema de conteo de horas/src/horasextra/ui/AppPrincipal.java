@@ -1,5 +1,6 @@
 package horasextra.ui;
 
+import horasextra.repositorio.RegistroRepositorio;
 import horasextra.repositorio.RegistroRepositorioMemoria;
 import java.net.URL;
 import javafx.application.Application;
@@ -14,7 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class AppPrincipal extends Application {
-    private final RegistroRepositorioMemoria registroRepositorio = new RegistroRepositorioMemoria();
+    private final RegistroRepositorio registroRepositorio = new RegistroRepositorioMemoria();
     private final VistaResumen vistaResumen = new VistaResumen(registroRepositorio);
     private final VistaCalendario calendario = new VistaCalendario(registroRepositorio);
     private final VistaFormularioRegistro formularioRegistro = new VistaFormularioRegistro(

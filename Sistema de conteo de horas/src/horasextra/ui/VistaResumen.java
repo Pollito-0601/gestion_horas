@@ -1,6 +1,6 @@
 package horasextra.ui;
 
-import horasextra.repositorio.RegistroRepositorioMemoria;
+import horasextra.repositorio.RegistroRepositorio;
 import horasextra.logica.ConversorTiempo;
 import java.net.URL;
 import javafx.scene.Scene;
@@ -17,11 +17,11 @@ import java.time.LocalDate;
 import javafx.application.Platform;
 
 public class VistaResumen {
-    private final RegistroRepositorioMemoria registroRepositorio;
+    private final RegistroRepositorio registroRepositorio;
     private final ConversorTiempo conversorTiempo = new ConversorTiempo();
     private final Label horasLabel = new Label();
 
-    public VistaResumen(RegistroRepositorioMemoria registroRepositorio) {
+    public VistaResumen(RegistroRepositorio registroRepositorio) {
         this.registroRepositorio = registroRepositorio;
         actualizarHorasTotales();
     }

@@ -3,7 +3,7 @@ package horasextra.ui;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import javafx.stage.Stage;
-import horasextra.repositorio.RegistroRepositorioMemoria;
+import horasextra.repositorio.RegistroRepositorio;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -15,11 +15,11 @@ import horasextra.logica.ConversorTiempo;
 
 public class VistaFormularioRegistro {
     private static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private final RegistroRepositorioMemoria registroRepositorio;
+    private final RegistroRepositorio registroRepositorio;
     private final VistaCalendario calendario;
     private final Runnable onRegistroGuardado;
 
-    public VistaFormularioRegistro(RegistroRepositorioMemoria registroRepositorio, VistaCalendario calendario, Runnable onRegistroGuardado) {
+    public VistaFormularioRegistro(RegistroRepositorio registroRepositorio, VistaCalendario calendario, Runnable onRegistroGuardado) {
         this.registroRepositorio = registroRepositorio;
         this.calendario = calendario;
         this.onRegistroGuardado = onRegistroGuardado;

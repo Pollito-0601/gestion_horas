@@ -1,6 +1,6 @@
 package horasextra.ui;
 
-import horasextra.repositorio.RegistroRepositorioMemoria;
+import horasextra.repositorio.RegistroRepositorio;
 import horasextra.util.SemanaUtil;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -14,14 +14,14 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class VistaCalendario {
-    private final RegistroRepositorioMemoria registroRepositorio;
+    private final RegistroRepositorio registroRepositorio;
     private final GridPane grillaDias = new GridPane();
     private final Label mesLabel = new Label();
     private final Label semanaSeleccionadaLabel = new Label();
     private LocalDate fechaSeleccionada = LocalDate.now();
     private YearMonth mesMostrado = YearMonth.now();
 
-    public VistaCalendario(RegistroRepositorioMemoria registroRepositorio) {
+    public VistaCalendario(RegistroRepositorio registroRepositorio) {
         this.registroRepositorio = registroRepositorio;
         grillaDias.setHgap(4);
         grillaDias.setVgap(4);
