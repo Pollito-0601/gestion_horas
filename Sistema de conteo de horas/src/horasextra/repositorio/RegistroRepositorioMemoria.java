@@ -2,6 +2,7 @@ package horasextra.repositorio;
 import java.util.Map;
 import java.time.LocalDate;
 import horasextra.modelo.RegistroSemanal;
+import java.util.ArrayList;
 import java.util.TreeMap;
 import horasextra.util.SemanaUtil;
 
@@ -25,19 +26,21 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
         String[] resultados = new String[registros.size()];
         int i = 0;
         for(RegistroSemanal registro : registros.values()){
-            resultados[i] = "ID: " + registro.getId() + ", Fecha Inicio Semana: " + registro.getFechaInicioSemana() + ", Minutos Extra: " + registro.getMinutosExtra() + ", Fecha Creación: " + registro.getFechaCreacion() + ", Fecha Modificación: " + registro.getFechaModificacion();
+            resultados[i] = formatearRegistro(registro);
             i++;
         }
         return resultados;
     }
     
     @Override
-    public void listarEnRango(LocalDate fechaInicio, LocalDate fechaFin) {
+    public String[] listarEnRango(LocalDate fechaInicio, LocalDate fechaFin) {
+        ArrayList<String> resultados = new ArrayList<>();
         for(RegistroSemanal registro : registros.values()){
             if(!registro.getFechaInicioSemana().isBefore(SemanaUtil.fechaInicioSemana(fechaInicio)) && !registro.getFechaInicioSemana().isAfter(SemanaUtil.fechaInicioSemana(fechaFin))){
-                System.out.println("ID: " + registro.getId() + ", Fecha Inicio Semana: " + registro.getFechaInicioSemana() + ", Minutos Extra: " + registro.getMinutosExtra() + ", Fecha Creación: " + registro.getFechaCreacion() + ", Fecha Modificación: " + registro.getFechaModificacion());
+                resultados.add(formatearRegistro(registro));
             }
         }
+        return resultados.toArray(new String[0]);
     }
 
     @Override
@@ -64,5 +67,14 @@ public class RegistroRepositorioMemoria implements RegistroRepositorio {
             totalMinutos += registro.getMinutosExtra();
         }
         return totalMinutos;
+    }
+
+    private String formatearRegistro(RegistroSemanal registro) {
+        return "ID: " + registro.getId()
+            + "\nFecha Inicio Semana: " + registro.getFechaInicioSemana()
+            + "\nMinutos Extra: " + registro.getMinutosExtra()
+            + "\nFecha Creación: " + registro.getFechaCreacion()
+            + "\nFecha Modificación: " + registro.getFechaModificacion()
+            + "\n----------------------------------------";
     }
 }
