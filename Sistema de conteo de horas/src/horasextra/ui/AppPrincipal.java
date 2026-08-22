@@ -1,7 +1,8 @@
 package horasextra.ui;
 
 import horasextra.repositorio.RegistroRepositorio;
-import horasextra.repositorio.RegistroRepositorioMemoria;
+import horasextra.repositorio.RegistroRepositorioSQLite;
+
 import java.net.URL;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,14 +14,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.io.File;
 
 public class AppPrincipal extends Application {
-    private final RegistroRepositorio registroRepositorio = new RegistroRepositorioMemoria();
+    private final RegistroRepositorio registroRepositorio = new RegistroRepositorioSQLite(rutaBaseDatos());
     private final VistaResumen vistaResumen = new VistaResumen(registroRepositorio);
     private final VistaCalendario calendario = new VistaCalendario(registroRepositorio);
     private final VistaFormularioRegistro formularioRegistro = new VistaFormularioRegistro(
         registroRepositorio, calendario, vistaResumen::actualizarHorasTotales
     );
+
+    private static String rutaBaseDatos() {
+        String carpetaDatos = System.getProperty("user.home") + File.separator + ".horas_extra";
+        new File(carpetaDatos).mkdirs();
+        return carpetaDatos + File.separator + "horas_extra.db";
+    }
 
     @Override
     public void start(Stage stage) {
